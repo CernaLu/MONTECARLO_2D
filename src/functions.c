@@ -18,7 +18,7 @@ void data(float *L, int *N, float *n,
 		//########## Nº OF PARTICLES ######
 		float nn, nnn, mod;
 		mod = 1.0;
-		while( mod != 0 ){
+		while( mod != 0.0 ){
 		printf("Set number of particles: ");
 		  scanf("%f",&nn);
 		nnn = sqrt(nn);
@@ -84,14 +84,15 @@ float mc_dist(float x, float y, float x_k,\
 		float y_k, float L)
 {
 	float x2, y2, dist;
-	x2 = fmodf(fabs(x-x_k),(L/2.0));
-	x2 *= x2;
-	y2 = fmodf(fabs(y-y_k),(L/2.0));
-	y2 *= y2;
-
-	dist = sqrt( x2 + y2 );
-	 
+	x2 = fabsf(x-x_k);
+	while(x2>0.5*L) x2=L-x2;
+	y2 = fabsf(y-y_k);
+	while(y2>0.5*L) y2=L-y2;
+	
+	dist = sqrtf( x2*x2 + y2*y2 );
+	
 	return dist;
+
 }
 
 void mc_move(int i, int n, int *m_rej, int *m_acc, float *x, float *y,\

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "declare.h"
-#define pi (4.0*arctanf(1.0))
+#define pi 4.0*atanf(1.0)
 
 int main ()
 {
